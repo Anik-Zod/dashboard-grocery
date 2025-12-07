@@ -6,7 +6,7 @@ import React from "react";
 
 async function ShortUsers() {
   const data = await getUsers();
-  const users = data.users;
+  const users = data?.users;
 
   return (
     <div className="px-4 py-4 bg-white rounded-lg shadow h-[567px] overflow-y-auto z-0">

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import ProfileData from "./ProfileData";
 import { getUsers } from "@/lib/fetchData";
-import { redirect } from "next/navigation";
+
 
 export async function generateStaticParams() {
   const response = await getUsers();

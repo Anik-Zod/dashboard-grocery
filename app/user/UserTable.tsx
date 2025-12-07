@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default async function UserTable() {
   const data = await getUsers();
-  const users = data.users;
+  const users = data?.users;
 
   return (
     <div className="w-full max-w-[1115px] max-h-[567px] overflow-y-auto bg-white  rounded-lg shadow">
@@ -32,7 +32,7 @@ export default async function UserTable() {
         </thead>
 
         <tbody>
-          {users.map((user: User, idx: number) => (
+          {users?.map((user: User, idx: number) => (
             <tr
               key={user._id}
               className={`transition ${idx % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-orange-100/40`}

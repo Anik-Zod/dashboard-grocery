@@ -1,0 +1,48 @@
+import { getUsers } from "@/lib/fetchData";
+import { User } from "@/type";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+async function ShortUsers() {
+  const data = await getUsers();
+  const users = data.users;
+
+  return (
+    <div className="px-4 py-4 bg-white rounded-lg shadow h-[567px] overflow-y-auto z-0">
+      <h2 className="text-2xl font-extrabold text-gray-700 text-center mb-4">
+        Online Users
+      </h2>
+      <div className="flex flex-col gap-3">
+        {users?.map((user: User, index: number) => (
+          <Link href={`/profile/${user._id}`} key={index}>
+            <div
+              key={index}
+              className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <div className="relative w-12 h-12 shrink-0 z-0">
+                <Image
+                  src={user.image || "/profile.png"}
+                  alt={user.name}
+                  fill
+                  sizes="96px"
+                  style={{ objectFit: "cover" }}
+                  className="rounded-full border-2 border-orange-700"
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <p className="text-gray-800 font-medium truncate">
+                  {user.name}
+                </p>
+                <p className="text-gray-500 text-sm truncate">{user.email}</p>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default ShortUsers;

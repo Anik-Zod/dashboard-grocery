@@ -3,15 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.0.6",
+    "@reduxjs/toolkit": "^2.11.0",
+    "@tanstack/react-table": "^8.21.3",
+    "ag-grid-react": "^34.3.1",
+    "axios": "^1.13.2",
+    "lucide-react": "^0.555.0",
+    "motion": "^12.23.25",
+    "next": "^16.0.7",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "react-redux": "^9.2.0",
+    "recharts": "^3.5.1",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -19,7 +19,7 @@ export default function Sidebar() {
     { name: "Home", icon: <Home size={20} />, to: "/" },
     { name: "Products", icon: <Package size={20} />, to: "/products" },
     { name: "User", icon: <Users size={20} />, to: "/user" },
-    { name: "Profile", icon: <UserCircle size={20} />, to: `${user ? "profile/${user._id}" : "/login"}` },
+    { name: "Profile", icon: <UserCircle size={20} />,  to: user ? `/profile/${user._id}` : "/login" },
     {name:"Orders",icon:<CalendarArrowDown size={20}/>,to:"/orders"},
     // {name:"Admins",icon:<ShieldUser size={20}/>,to:"/admins"},
     {name:"Inventory",icon:<Warehouse size={20}/>,to:"/Inventory"},

@@ -6,7 +6,7 @@ export interface UsersResponse {
   // ... other fields if any
 }
 
-export async function getUsers(): Promise<UsersResponse> {
+export async function getUsers(): Promise<UsersResponse | null> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/getAll`,
     {
@@ -29,17 +29,13 @@ export async function getUsers(): Promise<UsersResponse> {
   return data as UsersResponse;
 }
 
-export async function getProfile(id: string): Promise<User> {
+export async function getProfile(id: string): Promise<User | null> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/get/${id}`,{
     next:{ revalidate: 30 }
 });
 
-  if (!res.ok) {
-    // আপনি error handle করতে পারেন — throw বা return default value
-    throw new Error(`Failed to fetch user. Status: ${res.status}`);
-  }
-
+  if (!res.ok) return null;
   const data = await res.json();
   return data as User;
 }

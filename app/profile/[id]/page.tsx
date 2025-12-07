@@ -1,12 +1,13 @@
 import { Suspense } from "react";
 import ProfileData from "./ProfileData";
 import { getUsers } from "@/lib/fetchData";
+import { redirect } from "next/navigation";
 
 export async function generateStaticParams() {
   const response = await getUsers();
-  const users = response.users;
-  return users.map(user=>({
-    id:user._id.toString(),
+  const users = response?.users || [];
+  return users.filter(user=>user?._id).map(user=>({
+    id:user._id.toString()
   }))
 }
 

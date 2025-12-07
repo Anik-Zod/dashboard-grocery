@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Bell, Clock, Heart, Settings, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { Order, User } from "@/type";
+import { useRouter } from "next/navigation";
 
 type Props = {
   user: User;
@@ -11,6 +12,8 @@ type Props = {
 };
 
 export default function UserProfile({ user, orders }: Props) {
+  const router = useRouter()
+  if(!user) router.push("/login") 
   return (
     <motion.div className=" pt-10 ">
       <div className=" mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">

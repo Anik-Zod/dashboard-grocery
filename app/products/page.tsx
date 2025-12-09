@@ -1,7 +1,16 @@
 "use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
-import { Plus, X } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Plus,
+  X,
+  Tag,
+  DollarSign,
+  FileText,
+  Layers,
+} from "lucide-react";
 
 const AddProduct = () => {
   const [productData, setProductData] = useState({
@@ -12,8 +21,7 @@ const AddProduct = () => {
   });
 
   const [images, setImages] = useState<File[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("Form submitting turned of due to misuse");
+  const message = "Form submitting turned off due to misuse";
 
   const categories = ["Vegetables", "Dairy", "Fruits", "Instant", "Drinks"];
 
@@ -41,20 +49,29 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="  px-6 py-[29px]  bg-white rounded-lg shadow border border-gray-100">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center tracking-tight">
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35 }}
+      className="px-4 lg:h-[568px] lg:overflow-y-auto sm:px-6 py-6  bg-white rounded-lg shadow border border-gray-100 mx-auto"
+    >
+      <h2 className="text-3xl font-extrabold text-gray-800 mb-8 text-center tracking-tight">
         Add New Product
       </h2>
 
       {message && (
-        <p className="mb-4 text-center mx-auto w-max px-10 text-xl animate-bounce font-semibold text-red-500 bg-red-300/20 py-2 rounded-md">
+        <motion.p
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          className="mb-6 text-center px-10 text-lg animate-pulse font-semibold text-red-500 bg-red-100 py-2 rounded-lg"
+        >
           {message}
-        </p>
+        </motion.p>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Name & Price */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Input Fields */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {/* Name */}
           <div className="relative group">
             <input
@@ -62,8 +79,12 @@ const AddProduct = () => {
               name="name"
               value={productData.name}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none transition"
+              className="w-full border border-gray-300 rounded-xl p-4 pl-11 focus:ring-2 focus:ring-orange-400 outline-none transition text-base"
               placeholder="Product Name"
+            />
+            <Tag
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-orange-500 transition"
+              size={20}
             />
           </div>
 
@@ -74,17 +95,22 @@ const AddProduct = () => {
               name="price"
               value={productData.price}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none transition"
+              className="w-full border border-gray-300 rounded-xl p-4 pl-11 focus:ring-2 focus:ring-orange-400 outline-none transition text-base"
               placeholder="Price"
             />
+            <DollarSign
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-orange-500 transition"
+              size={20}
+            />
           </div>
+
           {/* Category */}
           <div className="relative group">
             <select
               name="category"
               value={productData.category}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none transition appearance-none bg-white"
+              className="w-full border border-gray-300 rounded-xl p-4 pl-11 focus:ring-2 focus:ring-orange-400 outline-none transition appearance-none bg-white text-base"
             >
               <option value="">Select Category</option>
               {categories.map((cat) => (
@@ -93,6 +119,11 @@ const AddProduct = () => {
                 </option>
               ))}
             </select>
+
+            <Layers
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-orange-500 transition"
+              size={20}
+            />
           </div>
         </div>
 
@@ -100,26 +131,31 @@ const AddProduct = () => {
         <div className="relative group">
           <textarea
             name="description"
-            rows={1}
+            rows={2}
             value={productData.description}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none transition"
+            className="w-full border border-gray-300 rounded-xl p-4 pl-11 focus:ring-2 focus:ring-orange-400 outline-none transition resize-none text-base"
             placeholder="Description"
           />
-          
+          <FileText
+            className="absolute left-3 top-4 text-gray-400 group-hover:text-orange-500 transition"
+            size={20}
+          />
         </div>
 
-        {/* Image Upload */}
+        {/* Images */}
         <div>
-          <p className="mb-3 text-gray-700 font-medium">
+          <p className="mb-3 text-gray-700 font-medium text-lg">
             Upload Images (Max 4)
           </p>
 
           <div className="flex gap-4 flex-wrap">
             {images.map((file, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="relative h-28 w-28 rounded-xl overflow-hidden shadow-md border border-gray-200"
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="relative h-28 w-28 rounded-xl overflow-hidden shadow-md border border-gray-200 group"
               >
                 <Image
                   src={URL.createObjectURL(file)}
@@ -132,13 +168,16 @@ const AddProduct = () => {
                   onClick={() => removeImage(idx)}
                   className="absolute top-1 right-1 bg-white text-red-600 rounded-full p-1 shadow hover:bg-red-600 hover:text-white transition"
                 >
-                  <X size={14} />
+                  <X size={16} />
                 </button>
-              </div>
+              </motion.div>
             ))}
 
             {images.length < 4 && (
-              <label className="h-28 w-28 flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-orange-400 hover:bg-orange-50 transition">
+              <motion.label
+                whileHover={{ scale: 1.05 }}
+                className="size-18 flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-orange-500 hover:bg-orange-50 transition text-sm font-medium"
+              >
                 <input
                   type="file"
                   multiple
@@ -147,22 +186,23 @@ const AddProduct = () => {
                   className="hidden"
                 />
                 <Plus size={26} className="text-gray-400" />
-                <span className="text-xs text-gray-400 mt-1">Add Image</span>
-              </label>
+                <span className="mt-1">Add</span>
+              </motion.label>
             )}
           </div>
         </div>
 
-        {/* Submit */}
-        <button
+        {/* Submit Button */}
+        <motion.button
+          whileTap={{ scale: 0.97 }}
+          whileHover={{ scale: 1.02 }}
           type="submit"
-          disabled={loading}
-          className="w-full  bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-semibold text-lg py-3 rounded-xl shadow-lg transition transform hover:scale-[1.02]"
+          className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-lg py-3 rounded-xl shadow-lg transition"
         >
-          {loading ? "Adding..." : "Add Product"}
-        </button>
+          Add Product
+        </motion.button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

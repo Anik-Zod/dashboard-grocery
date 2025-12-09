@@ -9,7 +9,7 @@ function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: false, amount: 0.2 }}
-      className="text-gray-500/80 pt-14 px-6 md:px-15 bg-white mx-4 rounded-lg shadow"
+      className="text-gray-500/80 pt-14 px-6 md:px-15 bg-white rounded-lg shadow"
     >
       <div className="flex flex-wrap justify-between gap-12 md:gap-6">
         {/* BRAND */}

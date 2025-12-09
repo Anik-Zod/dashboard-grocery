@@ -43,7 +43,7 @@ export default function EmailSourceChart() {
     <>
       <div className="w-full  mx-auto bg-white rounded-lg shadow-sm p-6">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold text-gray-900">Email</h2>
+          <h2 className="text-xl font-semibold text-gray-900">Email</h2>
           <button className="text-gray-400 hover:text-gray-600">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="2" />

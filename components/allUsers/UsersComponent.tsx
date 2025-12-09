@@ -1,17 +1,21 @@
-import { getUsers } from "@/lib/fetchData";
+"use client";
+import { useAuthStore } from "@/store/useAuthStore";
 import { User } from "@/type";
+import { CirclePlus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useEffect } from "react";
 
-async function ShortUsers() {
-  const data = await getUsers();
-  const users = data?.users;
-
+function UsersComponent({ users }: { users: User[] }) {
+  const setAllUsers = useAuthStore((state) => state.setAllUsers);
+  useEffect(() => {
+    setAllUsers(users);
+  }, [users, setAllUsers]);
   return (
-    <div className="px-4 py-4 bg-white rounded-lg shadow h-[567px] overflow-y-auto z-0">
-      <h2 className="text-2xl font-extrabold text-gray-700 text-center mb-4">
+    <div className="px-4 py-6 bg-white rounded-lg shadow h-[567px] overflow-y-auto z-0">
+      <h2 className="text-xl font-semibold text-gray-700  flex items-center justify-around mb-4">
         Online Users
+        <span className="bg-[#F97316] text-white p-3 rounded-lg"><CirclePlus /></span>
       </h2>
       <div className="flex flex-col gap-3">
         {users?.map((user: User, index: number) => (
@@ -27,7 +31,7 @@ async function ShortUsers() {
                   fill
                   sizes="96px"
                   style={{ objectFit: "cover" }}
-                  className="rounded-full border-2 border-orange-700"
+                  className="rounded-lg border-2 border-orange-700"
                 />
               </div>
 
@@ -45,4 +49,4 @@ async function ShortUsers() {
   );
 }
 
-export default ShortUsers;
+export default UsersComponent;

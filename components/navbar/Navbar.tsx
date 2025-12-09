@@ -1,19 +1,21 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  ChevronDown,
   MessageSquareText,
   Megaphone,
   Settings,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import profilePic from "../public/profile.jpeg";
 import { useAuthStore, useAuthInit } from "@/store/useAuthStore";
-import Notification from "./Notification";
+import Notification from "../Notification";
 import { useClickOutside } from "@/hooks/handleClickOutside";
-import Complain from "./Complain";
-import SettingsSidebar from "./Setting";
+import Complain from "../Complain";
+import SettingsSidebar from "../Setting";
+import SearchBar from "./SearchBar";
+import MobileView from "./MobileView";
+import SearchBox from "../search/Searchbox";
+import {motion} from "motion/react"
 
 const Navbar = () => {
   useAuthInit();
@@ -22,48 +24,69 @@ const Navbar = () => {
   const [show, setShow] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
 
-  const handleScroll = () => {
-    if (window.scrollY > lastScrollY) {
-      setShow(false);
-    } else {
-      setShow(true);
-    }
-    setLastScrollY(window.scrollY);
-  };
+  const [mobile, setMobile] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
 
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   const notificationRef = useRef<HTMLDivElement>(null);
-  useClickOutside(notificationRef,() => setShowNotification(false));
+  useClickOutside(notificationRef, () => setShowNotification(false));
 
   const complainRef = useRef<HTMLDivElement>(null);
-  const ignorecomplainRef = useRef<HTMLButtonElement >(null);
+  const ignorecomplainRef = useRef<HTMLButtonElement>(null);
   const [showComplain, setShowComplain] = useState(false);
-  useClickOutside(complainRef, () => setShowComplain(false),ignorecomplainRef);
+  useClickOutside(complainRef, () => setShowComplain(false), ignorecomplainRef);
 
   const [showSettings, setShowSettings] = useState(false);
   const settingRef = useRef<HTMLDivElement>(null);
   useClickOutside(settingRef, () => setShowSettings(false));
 
+  const mobileRef = useRef<HTMLDivElement>(null);
+  const ignoreMobileRef = useRef<HTMLDivElement>(null);
+  useClickOutside(mobileRef, () => setMobile(false), ignoreMobileRef);
+
+  const searchRef = useRef<HTMLDivElement>(null);
+  const ignoreSearchRef = useRef<HTMLDivElement>(null);
+  useClickOutside(searchRef, () => setOpenSearch(false), ignoreSearchRef);
+
   return (
     <nav
-      className={`z-5 fixed top-0 flex items-center justify-between sm:gap-0 gap-20 px-8 py-5 bg-white border-b border-gray-100 w-full ${
+      className={`z-5 fixed top-0 flex items-center justify-between px-10 sm:gap-0 gap-10  py-5 bg-white border-b border-gray-100 w-full ${
         show ? "translate-y-0" : "-translate-y-full"
       } transition-transform duration-300 delay-100 `}
     >
       {/* --- Left Section: Logo --- */}
-      <div className="shrink-0 ">
+      <motion.div
+      animate={{x:20}}
+      transition={{duration:0.3}}
+      className="shrink-0 ">
         <Link
           href="/"
-          className=" sm:text-3xl pl-10 font-extrabold text-[#2d3748] tracking-tight"
+          className=" text-3xl font-extrabold text-[#2d3748] tracking-tight"
         >
           Grocery<span className="text-[#f6ad55]">.</span>
         </Link>
-      </div>
+      </motion.div>
 
+      <div
+        onClick={() => setOpenSearch((prev) => !prev)}
+        ref={ignoreSearchRef}
+        className=" lg:w-[400px] sm:w-[200px] sm:block hidden"
+      >
+        <SearchBar />
+      </div>
 
       {/* --- Right Section: Actions & Profile --- */}
       <div className="flex items-center sm:gap-6 gap-0">
@@ -74,14 +97,13 @@ const Navbar = () => {
             <span className="text-lg">🇺🇸</span>
           </div>
           <span className="text-sm font-bold text-slate-700">English (US)</span>
-          <ChevronDown className="w-4 h-4 text-gray-400" />
         </div>
 
         {/* Divider */}
         <div className="h-8 w-1 bg-gray-200 hidden xl:block mx-2"></div>
 
         {/* Icons Area */}
-        <div className="flex items-center gap-2 sm:gap-5 text-slate-700">
+        <div className="hidden md:flex items-center gap-2 sm:gap-5 text-slate-700">
           {/* Chat Icon with Badge */}
           <button
             ref={ignorecomplainRef}
@@ -111,12 +133,16 @@ const Navbar = () => {
         </div>
 
         {/* User Profile */}
-        <div className="flex items-center gap-3 ml-2 pl-4 border-l border-gray-100">
-          <div className="text-right hidden md:block leading-tight">
+        <div
+          onClick={() => setMobile(!mobile)}
+          ref={ignoreMobileRef}
+          className="flex items-center  gap-3 lg:ml-2 "
+        >
+          <div className="text-right lg:block leading-tight">
             <div className="text-xl font-bold text-[#2d3748]">
               {user?.name || "Admin"}
             </div>
-            <div className="text-xs text-gray-400 font-medium">
+            <div className="lg:block text-xs text-gray-400 font-medium">
               {user?.email || "admin@gmail.com"}
             </div>
           </div>
@@ -150,6 +176,34 @@ const Navbar = () => {
       >
         <SettingsSidebar showSettings={showSettings} />
       </div>
+      {/* mobile view */}
+
+      <div
+        ref={mobileRef}
+        className="rounded-lg overflow-hidden fixed right-2 top-21  shadow-[0_18px_25px_rgba(0,0,0,0.35)]"
+      >
+        <MobileView
+          mobile={mobile}
+          setMobile={setMobile}
+          ignorecomplainRef={ignorecomplainRef}
+          setShowComplain={setShowComplain}
+          setShowNotification={setShowNotification}
+          setShowSettings={setShowSettings}
+        />
+      </div>
+
+
+      {openSearch && (
+        <div
+          ref={searchRef}
+          className="left-1/2 z-10 -translate-x-1/2  overflow-hidden fixed top-23  "
+        >
+          <SearchBox setOpenSearch={setOpenSearch} openSearch={openSearch} />
+        </div>
+      )}
+      {openSearch && (
+        <div className="fixed z-0 h-screen w-screen top-20 left-0 bottom-0   backdrop-blur-sm "></div>
+      )}
     </nav>
   );
 };

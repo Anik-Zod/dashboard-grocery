@@ -9,7 +9,7 @@ export default async function UserTable() {
   const users = data?.users;
 
   return (
-    <div className="w-full max-w-[1115px] max-h-[567px] overflow-y-auto bg-white  rounded-lg shadow">
+    <div className="w-full max-w-[1115px] lg:h-[567px] max-h-screen overflow-y-auto bg-white  rounded-lg shadow">
       <table className="w-full table-auto">
         <thead className="bg-[#FFEDD4] sticky top-0 z-10">
           <tr>

@@ -58,3 +58,13 @@ export interface Address {
   phone: string
   __v: number
 }
+
+export interface MobileViewProps {
+  mobile: boolean;
+  ignorecomplainRef: React.Ref<HTMLButtonElement>;
+  setShowComplain: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowNotification: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
+  setMobile: React.Dispatch<React.SetStateAction<boolean>>;
+}
+

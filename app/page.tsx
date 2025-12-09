@@ -1,13 +1,14 @@
-
+import ShortUsers from "@/components/allUsers/ShortUsers";
 import Home from "@/components/home/Home";
-import ShortUsers from "@/components/ShortUsers";
+
 
 
 
 
 
 function Page() {
- 
+
+
   return (
     <div className="z-0   flex flex-col lg:flex-row gap-3 w-full overflow-x-hidden">
       {/* Left section: Stats + Charts */}

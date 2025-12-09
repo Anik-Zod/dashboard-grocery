@@ -9,7 +9,13 @@ import { redirect } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
-  const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(() => {  
+    // Only access window on the client
+    if (typeof window !== "undefined") {
+      return window.innerWidth >= 1024;
+    }
+    return false; // server render
+  });
   const user = useAuthStore(state=>state.user)
   const clearUser = useAuthStore(state=>state.clearUser)
   const pathname = usePathname()
@@ -31,12 +37,11 @@ export default function Sidebar() {
     <div className="flex ">
       {/* Sidebar */}
       <AnimatePresence>
-        {open && (
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: 256 }}
+            animate={{ width: open?256:0 }}
             exit={{ width: 0 }}
-            className="bg-white ml-3 shadow rounded-lg  h-[568px] overflow-hidden flex flex-col"
+            className="bg-white  shadow rounded-lg  h-[568px] overflow-hidden flex flex-col"
           >
             <ul className="space-y-2 px-3  py-4 flex-1">
               {menu.map((item) => (
@@ -68,7 +73,6 @@ export default function Sidebar() {
               </div> 
             }
           </motion.div>
-        )}
       </AnimatePresence>
 
       {/* Toggle button */}

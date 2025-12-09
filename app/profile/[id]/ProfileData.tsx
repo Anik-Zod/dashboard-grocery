@@ -10,7 +10,7 @@ export default async function ProfileData({ id }: { id: string }) {
     return <div>User data is not available now , try again leter</div>
   }
   return (
-    <div className=" h-[566px] w-full  overflow-hidden bg-white rounded-lg shadow ">
+    <div className=" sm:h-[566px] w-full  overflow-hidden bg-white rounded-lg shadow ">
      <UserProfile user={user} orders={orders.orders}/> 
     </div>
   );

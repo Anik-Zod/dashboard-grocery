@@ -1,10 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  MessageSquareText,
-  Megaphone,
-  Settings,
-} from "lucide-react";
+import { MessageSquareText, Megaphone, Settings } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuthStore, useAuthInit } from "@/store/useAuthStore";
@@ -15,26 +11,27 @@ import SettingsSidebar from "../Setting";
 import SearchBar from "./SearchBar";
 import MobileView from "./MobileView";
 import SearchBox from "../search/Searchbox";
-import {motion} from "motion/react"
+import { motion } from "motion/react";
 
 const Navbar = () => {
   useAuthInit();
   const user = useAuthStore((state) => state.user);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [show, setShow] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
 
   const [mobile, setMobile] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
 
+  const lastScrollY = useRef(0);
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
+      const threshold = 15; // px
+      if (window.scrollY - lastScrollY.current > threshold) {
         setShow(false);
-      } else {
+      } else if (lastScrollY.current - window.scrollY > threshold) {
         setShow(true);
       }
-      setLastScrollY(window.scrollY);
+      lastScrollY.current = window.scrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -69,9 +66,10 @@ const Navbar = () => {
     >
       {/* --- Left Section: Logo --- */}
       <motion.div
-      animate={{x:20}}
-      transition={{duration:0.3}}
-      className="shrink-0 ">
+        animate={{ x: 20 }}
+        transition={{ duration: 0.3 }}
+        className="shrink-0 "
+      >
         <Link
           href="/"
           className=" text-3xl font-extrabold text-[#2d3748] tracking-tight"
@@ -108,27 +106,27 @@ const Navbar = () => {
           <button
             ref={ignorecomplainRef}
             onClick={() => setShowComplain(!showComplain)}
-            className="relative p-1 hover:bg-gray-100 rounded-full transition"
+            className="group relative p-1 cursor-pointer hover:bg-gray-100 rounded-full transition"
           >
-            <MessageSquareText className="w-6 h-6 text-[#2d3748]" />
+            <MessageSquareText className="group-hover:text-orange-500  w-6 h-6 text-[#2d3748]" />
             <span className="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-orange-500 transform translate-x-1/4 -translate-y-1/4"></span>
           </button>
 
           {/* Announcement Icon with Badge */}
           <button
             onClick={() => setShowNotification((prev) => !prev)}
-            className="relative p-1 hover:bg-gray-100 rounded-full transition"
+            className="relative group p-1 cursor-pointer hover:bg-gray-100 rounded-full transition"
           >
-            <Megaphone className="w-6 h-6 text-[#2d3748]" />
-            <span className="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-orange-500 transform translate-x-1/4 -translate-y-1/4"></span>
+            <Megaphone className="w-6 h-6 text-[#2d3748] group-hover:text-orange-500" />
+            <span className="absolute top-0  right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-orange-500 transform translate-x-1/4 -translate-y-1/4"></span>
           </button>
 
           {/* Settings Icon */}
           <button
             onClick={() => setShowSettings(!showSettings)}
-            className="p-1 hover:bg-gray-100 rounded-full transition"
+            className="p-1 cursor-pointer group hover:bg-gray-100 rounded-full transition"
           >
-            <Settings className="w-6 h-6 text-[#2d3748]" />
+            <Settings className="w-6 h-6 text-[#2d3748] group-hover:text-orange-500" />
           </button>
         </div>
 
@@ -191,7 +189,6 @@ const Navbar = () => {
           setShowSettings={setShowSettings}
         />
       </div>
-
 
       {openSearch && (
         <div

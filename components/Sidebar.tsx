@@ -78,7 +78,7 @@ export default function Sidebar() {
       {/* Toggle button */}
       <button
         onClick={() => setOpen(!open)}
-        className="cursor-pointer absolute top-7 left-4 p-2 rounded-md bg-gray-100 hover:bg-gray-200 z-50"
+        className="cursor-pointer fixed top-5 left-4 p-2 rounded-md bg-gray-100 hover:bg-gray-200 z-50"
       >
         <Menu size={24} />
       </button>

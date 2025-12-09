@@ -53,7 +53,7 @@ export default function UserProfile({ user, orders }: Props) {
         {/* MAIN DASHBOARD */}
         <div className="md:col-span-3 flex flex-col gap-6">
           {/* STAT CARDS */}
-          <div className="flex pr-4 gap-4">
+          <div className="flex pr-4 gap-4 overflow-x-auto ">
             <StatCard
               title="Orders"
               value={orders.length}
@@ -81,7 +81,7 @@ export default function UserProfile({ user, orders }: Props) {
           </div>
 
           {/* RECENT ACTIVITY */}
-          <div className="bg-white rounded-3xl py-6">
+          <div className="bg-white rounded-3xl py-6 px-3">
             <h3 className="flex items-center gap-2 text-gray-700 font-bold text-lg">
               <Clock /> Recent Activity
             </h3>
@@ -123,7 +123,7 @@ export default function UserProfile({ user, orders }: Props) {
                       </div>
 
                       <div>
-                        <span className="font-medium text-gray-700">
+                        <span className="hidden sm:block font-medium text-gray-700">
                           Ordered {order.items.length} item
                           {order.items.length > 1 ? "s" : ""}
                         </span>

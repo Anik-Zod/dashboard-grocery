@@ -5,8 +5,8 @@ import { motion } from "motion/react";
 function Footer() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: false, amount: 0.2 }}
       className="text-gray-500/80 pt-14 px-6 md:px-15 bg-white rounded-lg shadow"

@@ -46,7 +46,7 @@ export default function RootLayout({
               {children}
             </div>
           </div>
-          <div className="mx-3">
+          <div className="mx-3 bg-whtie">
             <Footer/>
           </div>
         </div>

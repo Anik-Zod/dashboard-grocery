@@ -30,7 +30,7 @@ function UserCard({
           }}
           className="
             cursor-pointer flex items-center gap-4 p-4
-            rounded-xl bg-white 
+            rounded-2xl bg-white 
             border border-gray-100
             shadow-sm hover:shadow-md
             transition-all duration-200
@@ -43,7 +43,7 @@ function UserCard({
               alt={user.name}
               width={52}
               height={52}
-              className="size-13 rounded-full object-cover border shadow-sm"
+              className="size-13 rounded-2xl object-cover border shadow-sm hover:shadow-md"
             />
           </div>
 

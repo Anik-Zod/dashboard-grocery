@@ -52,7 +52,7 @@ export default function Notification({
             animate={{ width: 340, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="h-screen bg-white  shadow-[0_18px_25px_rgba(0,0,0,0.35)] rounded-l-xl overflow-hidden"
+            className="h-screen bg-white  shadow-[0_18px_25px_rgba(0,0,0,0.35)] rounded-l-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4   bg-gray-50">
@@ -70,11 +70,11 @@ export default function Notification({
                   initial={{ x: 20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white  p-4 shadow-sm  hover:shadow-md transition-all cursor-pointer"
+                  className="bg-white  p-4 shadow-sm hover:shadow-md  hover:shadow-md transition-all cursor-pointer"
                 >
                   <div className="flex items-start gap-3">
                     <div
-                      className={`w-12 h-12 ${n.bg} rounded-xl flex items-center justify-center`}
+                      className={`w-12 h-12 ${n.bg} rounded-2xl flex items-center justify-center`}
                     >
                       {n.icon}
                     </div>

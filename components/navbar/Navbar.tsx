@@ -91,7 +91,7 @@ const Navbar = () => {
         {/* Language Selector */}
         <div className="hidden xl:flex items-center gap-2 cursor-pointer">
           {/* US Flag Placeholder - You can replace with an SVG or Image */}
-          <div className="w-6 h-6 rounded-full overflow-hidden p-6 flex items-center justify-center bg-gray-200">
+          <div className="w-6 h-6 rounded-2xl overflow-hidden p-6 flex items-center justify-center bg-gray-200">
             <span className="text-lg">🇺🇸</span>
           </div>
           <span className="text-sm font-bold text-slate-700">English (US)</span>
@@ -106,7 +106,7 @@ const Navbar = () => {
           <button
             ref={ignorecomplainRef}
             onClick={() => setShowComplain(!showComplain)}
-            className="group relative p-1 cursor-pointer hover:bg-gray-100 rounded-full transition"
+            className="group relative p-1 cursor-pointer hover:bg-gray-100 rounded-2xl transition"
           >
             <MessageSquareText className="group-hover:text-orange-500  w-6 h-6 text-[#2d3748]" />
             <span className="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-orange-500 transform translate-x-1/4 -translate-y-1/4"></span>
@@ -115,7 +115,7 @@ const Navbar = () => {
           {/* Announcement Icon with Badge */}
           <button
             onClick={() => setShowNotification((prev) => !prev)}
-            className="relative group p-1 cursor-pointer hover:bg-gray-100 rounded-full transition"
+            className="relative group p-1 cursor-pointer hover:bg-gray-100 rounded-2xl transition"
           >
             <Megaphone className="w-6 h-6 text-[#2d3748] group-hover:text-orange-500" />
             <span className="absolute top-0  right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-orange-500 transform translate-x-1/4 -translate-y-1/4"></span>
@@ -124,7 +124,7 @@ const Navbar = () => {
           {/* Settings Icon */}
           <button
             onClick={() => setShowSettings(!showSettings)}
-            className="p-1 cursor-pointer group hover:bg-gray-100 rounded-full transition"
+            className="p-1 cursor-pointer group hover:bg-gray-100 rounded-2xl transition"
           >
             <Settings className="w-6 h-6 text-[#2d3748] group-hover:text-orange-500" />
           </button>
@@ -144,7 +144,7 @@ const Navbar = () => {
               {user?.email || "admin@gmail.com"}
             </div>
           </div>
-          <div className="cursor-pointer hover:scale-125 transition h-10 w-10 rounded-xl overflow-hidden shadow-sm">
+          <div className="cursor-pointer hover:scale-125 transition h-10 w-10 rounded-2xl overflow-hidden shadow-sm">
             <Image
               src={user?.image || "/profile.png"}
               alt={user ? user.name : "profile"}
@@ -178,7 +178,7 @@ const Navbar = () => {
 
       <div
         ref={mobileRef}
-        className="rounded-lg overflow-hidden fixed right-2 top-21  shadow-[0_18px_25px_rgba(0,0,0,0.35)]"
+        className="rounded-2xl overflow-hidden fixed right-2 top-21  shadow-[0_18px_25px_rgba(0,0,0,0.35)]"
       >
         <MobileView
           mobile={mobile}
@@ -193,13 +193,13 @@ const Navbar = () => {
       {openSearch && (
         <div
           ref={searchRef}
-          className="left-1/2 z-10 -translate-x-1/2  overflow-hidden fixed top-23  "
+          className="left-1/2 z-[9999] -translate-x-1/2  overflow-hidden fixed top-23  "
         >
           <SearchBox setOpenSearch={setOpenSearch} openSearch={openSearch} />
         </div>
       )}
       {openSearch && (
-        <div className="fixed z-0 h-screen w-screen top-20 left-0 bottom-0   backdrop-blur-sm "></div>
+        <div className="fixed z-[9998] h-screen w-screen top-20 left-0 bottom-0   backdrop-blur-sm "></div>
       )}
     </nav>
   );

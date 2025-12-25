@@ -21,7 +21,7 @@ const AddProduct = () => {
   });
 
   const [images, setImages] = useState<File[]>([]);
-  const message = "Form submitting turned off due to misuse";
+  const message = "Only Super Admin Can use this feature";
 
   const categories = ["Vegetables", "Dairy", "Fruits", "Instant", "Drinks"];
 

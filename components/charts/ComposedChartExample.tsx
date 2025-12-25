@@ -98,7 +98,7 @@ const options = {
 
 export default function VisitorsLineChart() {
   return (
-    <div className="bg-white space-y-4 h-full max-h-[313px]  rounded-lg ">
+    <div className="bg-white space-y-4 h-full max-h-[313px]  rounded-2xl ">
       <StatsHeader />
       <div className="w-full relative bg-white h-full " >
         <Line data={data} options={options} />

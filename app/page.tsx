@@ -10,9 +10,9 @@ function Page() {
 
 
   return (
-    <div className="z-0   flex flex-col lg:flex-row gap-3 w-full overflow-x-hidden">
+    <div className="z-0 h-[560px]  rounded-2xl flex flex-col lg:flex-row items-end gap-3 w-full overflow-x-hidden">
       {/* Left section: Stats + Charts */}
-      <div className="flex-1 flex flex-col gap-4 min-w-0">
+      <div className="flex-1 w-full flex flex-col gap-4 min-w-0">
         <Home/>
       </div>
 

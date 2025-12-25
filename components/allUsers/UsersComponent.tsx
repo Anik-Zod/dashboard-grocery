@@ -12,17 +12,17 @@ function UsersComponent({ users }: { users: User[] }) {
     setAllUsers(users);
   }, [users, setAllUsers]);
   return (
-    <div className="px-4 py-6 bg-white rounded-lg shadow h-[567px] overflow-y-auto z-0">
+    <div className="px-4 py-6 bg-white rounded-2xl shadow-sm hover:shadow-md h-[568px] overflow-y-auto z-0">
       <h2 className="text-xl font-semibold text-gray-700  flex items-center justify-around mb-4">
         Online Users
-        <span className="bg-[#F97316] text-white p-3 rounded-lg"><CirclePlus /></span>
+        <span className="bg-[#F97316] text-white p-3 rounded-2xl"><CirclePlus /></span>
       </h2>
       <div className="flex flex-col gap-3">
         {users?.map((user: User, index: number) => (
           <Link href={`/profile/${user._id}`} key={index}>
             <div
               key={index}
-              className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-4 p-2 rounded-2xl hover:bg-gray-100 transition-colors"
             >
               <div className="relative w-12 h-12 shrink-0 z-0">
                 <Image
@@ -31,7 +31,7 @@ function UsersComponent({ users }: { users: User[] }) {
                   fill
                   sizes="96px"
                   style={{ objectFit: "cover" }}
-                  className="rounded-lg border-2 border-orange-700"
+                  className="rounded-2xl border-2 border-orange-700"
                 />
               </div>
 

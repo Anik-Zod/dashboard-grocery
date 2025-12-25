@@ -27,7 +27,7 @@ const complaintsData: Complaint[] = [
     complaint: "Payment failed but money debited",
     time: "1 hour ago",
     image:"/pratima.jpg",
-    status: "in-progress",
+    status: "pending",
   },
   {
     id: 3,
@@ -68,7 +68,7 @@ export default function Complain({
             animate={{ width: 360, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="h-full bg-white rounded-l-xl flex flex-col border-l border-gray-200"
+            className="h-full bg-white rounded-l-2xl flex flex-col border-l border-gray-200"
           >
             <div className="flex gap-4 px-6 py-5 border-b border-gray-200">
               <Siren color="orange" size={25} />
@@ -84,12 +84,12 @@ export default function Complain({
                   initial={{ x: 10, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.2 }}
-                  className="p-4 bg-white border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="p-4 bg-white border border-gray-100 rounded-2xl hover:bg-gray-50 transition-colors shadow-sm hover:shadow-md"
                 >
                   <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-3">
-                        <Image src={c.image} alt={c.userName} width={45} height={45} className="object-cover rounded-full size-10"/>
+                        <Image src={c.image} alt={c.userName} width={45} height={45} className="object-cover rounded-2xl size-10"/>
                          <p className="text-gray-900 font-medium">{c.userName}</p>
                         </div>
                       <p className="text-gray-700 text-sm mt-1 ">
@@ -97,7 +97,7 @@ export default function Complain({
                       </p>
                     </div>
                     <span
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      className={`px-2 py-1 rounded-2xl text-xs font-medium ${
                         statusStyles[c.status]
                       }`}
                     >

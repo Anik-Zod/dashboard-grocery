@@ -41,7 +41,7 @@ const renderCustomizedLabel = ({
 export default function EmailSourceChart() {
   return (
     <>
-      <div className="w-full  mx-auto bg-white rounded-lg shadow-sm p-6">
+      <div className="w-full  mx-auto bg-white rounded-lg shadow-sm p-6 h-full">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold text-gray-900">Email</h2>
           <button className="text-gray-400 hover:text-gray-600">
@@ -53,7 +53,7 @@ export default function EmailSourceChart() {
           </button>
         </div>
 
-        <ResponsiveContainer width="100%" height={200}>
+        <ResponsiveContainer width="100%" height={202}>
           <PieChart>
             <Pie
               data={data}

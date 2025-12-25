@@ -25,6 +25,7 @@ function SearchBox({ openSearch,setOpenSearch }: { openSearch: boolean;setOpenSe
     );
   }) || [];
   
+  
 
 
   return (
@@ -36,13 +37,13 @@ function SearchBox({ openSearch,setOpenSearch }: { openSearch: boolean;setOpenSe
           animate={{ opacity: openSearch ? 1 : 0 }}
           exit={{ width: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className=" lg:w-5xl sm:w-2xl min-w-[400px]  rounded-xl max-h-[500px]  bg-white border border-gray-400 overflow-hidden animate-scaleIn"
+          className=" lg:w-5xl sm:w-2xl min-w-[400px] z-[9999] rounded-2xl max-h-[500px]  bg-white border border-gray-400 overflow-hidden animate-scaleIn"
         >
           {/* HEADER */}
           <div className="bg-linear-to-r  to-[#ff9950] from-[#d35800] text-white  px-4 py-7">
             <div className="flex justify-between items-center">
               <div className="flex gap-4 justify-center items-center ml-3">
-                <div className="bg-white/30 p-3 rounded-full">
+                <div className="bg-white/30 p-3 rounded-2xl">
                   <Search />
                 </div>
                 <h2 className="font-semibold text-xl">Find Users </h2>

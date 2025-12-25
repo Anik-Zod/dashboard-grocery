@@ -32,7 +32,7 @@ function MobileView({
               <button
                 ref={ignorecomplainRef}
                 onClick={() => setShowComplain((prev: boolean) => !prev)}
-                className="sm:hidden py-3 px-5  relative p-1 hover:bg-gray-100 rounded-lg transition"
+                className="sm:hidden py-3 px-5  relative p-1 hover:bg-gray-100 rounded-2xl transition"
               >
                 {" "}
                 <div className="flex gap-3">
@@ -45,7 +45,7 @@ function MobileView({
               {/* Announcement Icon with Badge */}
               <button
                 onClick={() => setShowNotification((prev: boolean) => !prev)}
-                className="sm:hidden py-3 px-5  relative p-1 hover:bg-gray-100 rounded-lg transition"
+                className="sm:hidden py-3 px-5  relative p-1 hover:bg-gray-100 rounded-2xl transition"
               >
                 <div className="flex gap-3">
                   <Megaphone className="w-6 h-6 text-[#2d3748]" />
@@ -57,7 +57,7 @@ function MobileView({
               {/* Settings Icon */}
               <button
                 onClick={() => setShowSettings((prev: boolean) => !prev)}
-                className="sm:hidden py-3 px-5  p-1 hover:bg-gray-100 rounded-lg transition"
+                className="sm:hidden py-3 px-5  p-1 hover:bg-gray-100 rounded-2xl transition"
               >
                 <div className="flex gap-3">
                   <Settings className="w-6 h-6 text-[#2d3748]" />
@@ -67,14 +67,14 @@ function MobileView({
               {user ? (
                 <div
                 onClick={()=>clearUser()}
-                className="cursor-pointer flex gap-3 py-3 px-5 bg-red-500/20 rounded-lg text-red-600">
+                className="cursor-pointer flex gap-3 py-3 px-5 bg-red-500/20 rounded-2xl text-red-600">
                   <LogIn />
                   logout
                 </div>
               ) : (
                 <div
                   onClick={() => router.push("/login")}
-                  className="cursor-pointer flex gap-3 py-3 px-5 bg-green-500/20 rounded-lg text-green-600"
+                  className="cursor-pointer flex gap-3 py-3 px-5 bg-green-500/20 rounded-2xl text-green-600"
                 >
                   <LogIn />
                   login

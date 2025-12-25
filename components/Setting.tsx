@@ -56,7 +56,7 @@ export default function SettingsSidebar({
             animate={{ width: 340, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="h-[568px] bg-white rounded-l-xl overflow-hidden"
+            className="h-[568px] bg-white rounded-l-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="px-5 py-4 bg-gray-50 border-b border-gray-200">
@@ -73,10 +73,10 @@ export default function SettingsSidebar({
                   initial={{ x: 20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.25 }}
-                  className="bg-white rounded-xl p-4 hover:bg-gray-50 cursor-pointer transition-colors border border-gray-100"
+                  className="bg-white rounded-2xl p-4 hover:bg-gray-50 cursor-pointer transition-colors border border-gray-100 shadow-sm hover:shadow-md"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center">
                       {item.icon}
                     </div>
                     <div className="flex-1">

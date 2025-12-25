@@ -35,15 +35,21 @@ export default function Sidebar() {
 
   return (
     <div className="flex ">
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-5 top-21 bg-black/50 lg:hidden"
+        ></div>
+      )}
       {/* Sidebar */}
       <AnimatePresence>
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: open?256:0 }}
             exit={{ width: 0 }}
-            className="bg-white  shadow rounded-lg  h-[568px] overflow-hidden flex flex-col"
+            className="bg-white  shadow rounded-lg  lg:h-[560px] z-10 lg:z-0 overflow-hidden flex flex-col fixed h-[calc(100vh-90px)] top-20 lg:top-0 lg:relative"
           >
-            <ul className="space-y-2 px-3  py-4 flex-1">
+            <ul className="space-y-2 px-3  py-4 flex-1 bg-white">
               {menu.map((item) => (
                 <li key={item.name}>
                   <Link
@@ -78,9 +84,9 @@ export default function Sidebar() {
       {/* Toggle button */}
       <button
         onClick={() => setOpen(!open)}
-        className="cursor-pointer fixed top-5 left-4 p-2 rounded-md bg-gray-100 hover:bg-gray-200 z-50"
+        className="cursor-pointer fixed top-7 left-4 p-2 rounded-md bg-gray-100 hover:bg-gray-200 z-50"
       >
-        <Menu size={24} />
+        <Menu size={20} />
       </button>
     </div>
   );

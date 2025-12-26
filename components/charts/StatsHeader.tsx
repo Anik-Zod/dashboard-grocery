@@ -28,7 +28,7 @@ export default function StatsHeader({
           </div>
 
           {/* Orange stat */}
-          <div className=" flex items-center gap-3">
+          <div className="  sm:flex items-center gap-3">
             <span className="w-3 h-3 rounded-full bg-orange-500"></span>
             <div>
               <div className="text-sm text-gray-500">This Week</div>

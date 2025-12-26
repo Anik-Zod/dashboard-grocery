@@ -2,7 +2,7 @@
 
 import { useAuthStore } from "@/store/useAuthStore";
 import { Search, X } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import UserCard from "./UserCard";
 import useDebounce from "@/hooks/useDebounce";
@@ -73,7 +73,7 @@ function SearchBox({ openSearch,setOpenSearch }: { openSearch: boolean;setOpenSe
           </div>
 
           {/* CONTENT */}
-          <div className="h-107 overflow-y-auto px-4 pb-4">
+          <div className="h-107 overflow-y-auto px-4 pb-4"> 
             <div className="w-full flex gap-3 items-center mt-6 justify-center mb-3">
               <div className="p-3 bg-linear-to-b from-green-800 to-green-600 rounded-full">
                 <Search color="white" size={20} />

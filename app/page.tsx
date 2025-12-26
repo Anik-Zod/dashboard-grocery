@@ -10,13 +10,13 @@ function Page() {
 
 
   return (
-    <div className="z-0 h-[560px]  rounded-2xl flex flex-col lg:flex-row items-end gap-3 w-full overflow-x-hidden">
+    <div className="z-0  h-full rounded-2xl flex flex-col lg:flex-row overflow-hidden gap-3 w-full overflow-x-hidden ">
       {/* Left section: Stats + Charts */}
-      <div className="flex-1 w-full flex flex-col gap-4 min-w-0">
+      <div className="flex-1 w-full flex flex-col gap-4 min-w-0 h-full ">
         <Home/>
       </div>
 
-      <div className="w-full lg:w-80 shrink min-w-0  ">
+      <div className="w-full lg:w-80 shrink min-w-0  h-full ">
           <ShortUsers />
       </div>
     </div>

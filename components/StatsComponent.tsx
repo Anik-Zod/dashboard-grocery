@@ -26,7 +26,7 @@ const StatItem: React.FC<StatItemProps> = ({ Icon, color, value, label }) => {
 
       {/* Text Content: Aligned for Optical Balance */}
       <div className="flex flex-col items-center sm:items-end flex-grow mt-2 sm:mt-0">
-        <div className="text-2xl font-black tracking-tight text-slate-900 leading-none">
+        <div className="text-xl font-black tracking-tight text-slate-900 leading-none">
           {value}
         </div>
         <div className="text-[10px] font-bold uppercase tracking-[0.05em] text-slate-400 mt-1">
@@ -43,7 +43,7 @@ const StatsComponent = () => {
       <div className="flex gap-1 sm:gap-3 items-center w-full">
         <StatItem Icon={Camera} color="text-rose-500" value="932" label="Projects" />
         <StatItem Icon={FilePlus} color="text-blue-500" value="1,032" label="Inquiries" />
-        <StatItem Icon={Wallet} color="text-indigo-500" value="102k" label="Investment" />
+        <StatItem Icon={Wallet} color="text-indigo-500" value="102k" label="Invest" />
         <StatItem Icon={BarChart} color="text-emerald-500" value="32k" label="Assets" />
       </div>
     </div>

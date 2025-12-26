@@ -1,12 +1,11 @@
 "use client";
 
-import { Home, Package, Users, UserCircle, Menu, CalendarArrowDown, Warehouse, Truck, CirclePoundSterling, LogOut } from "lucide-react";
+import { Home, Package, Users, UserCircle, Menu, CalendarArrowDown, Warehouse, Truck, CirclePoundSterling, LogOut, ShoppingBasket } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuthStore } from "@/store/useAuthStore";
-import { redirect } from "next/navigation";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Sidebar() {
     const [open, setOpen] = useState(() => {  
@@ -19,6 +18,7 @@ export default function Sidebar() {
   const user = useAuthStore(state=>state.user)
   const clearUser = useAuthStore(state=>state.clearUser)
   const pathname = usePathname()
+  const router = useRouter()
 
 
   const menu = [
@@ -34,57 +34,73 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="flex ">
-      {open && (
+    <div className="flex h-full">
+      {/* {open && (
         <div
           onClick={() => setOpen(false)}
-          className="fixed inset-0 z-5 top-21 bg-black/50 lg:hidden"
+          className="fixed inset-0 z-40  backdrop-blur-sm lg:hidden"
         ></div>
-      )}
+      )} */}
       {/* Sidebar */}
       <AnimatePresence>
           <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: open?256:0 }}
-            exit={{ width: 0 }}
-            className="bg-white  shadow rounded-lg  lg:h-[560px] z-10 lg:z-0 overflow-hidden flex flex-col fixed h-[calc(100vh-90px)] top-20 lg:top-0 lg:relative"
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: open ? 280 : 0, opacity: 1 }}
+            exit={{ width: 0, opacity: 0 }}
+            className="bg-white   rounded-2xl lg:h-full z-50 lg:z-0 overflow-hidden flex flex-col fixed h-[calc(100vh)] top-0 left-4 bottom-4 lg:top-0 lg:left-0 lg:relative "
           >
-            <ul className="space-y-2 px-3  py-4 flex-1 bg-white">
-              {menu.map((item) => (
-                <li key={item.name}>
+            {/* Header */}
+            <div className="p-6 justify-center flex items-center gap-3 border-b border-gray-50">
+                <div className="p-2 bg-orange-100 rounded-lg text-orange-600 shrink-0">
+                    <ShoppingBasket size={24} />
+                </div>
+                <h1 className="font-bold text-xl text-gray-800 tracking-tight whitespace-nowrap">Grocery<span className="text-orange-500">Dash</span></h1>
+            </div>
+
+            <ul className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+              {menu.map((item) => {
+                const isActive = pathname === item.to;
+                return (
+                <li key={item.name} className="whitespace-nowrap">
                   <Link
                     href={item.to}
-                    className={`flex pl-13 items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-200
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group
                       ${
-                        (pathname === item.to)
-                          ? "bg-orange-100 text-orange-500 font-semibold"
-                          : "text-gray-500 hover:bg-gray-100"
+                        isActive
+                          ? "bg-orange-50 text-orange-600 shadow-sm"
+                          : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                       }
                     `}
                   >
-                    {item.icon}
-                    <span className="whitespace-nowrap">{item.name}</span>
+                    <div className={`transition-colors ${isActive ? "text-orange-600" : "text-gray-400 group-hover:text-gray-600"}`}>
+                        {item.icon}
+                    </div>
+                    <span className="font-medium text-base">{item.name}</span>
+                    {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-orange-500" />}
                   </Link>
                 </li>
-              ))}
+              )})}
             </ul>
+            
+            <div className="p-4 border-t border-gray-50 bg-gray-50/50">
             {user?
-              <div onClick={()=>clearUser()} className=" mb-4 cursor-pointer hover:scale-105 hover:bg-[#e7d0ce] transition-all flex text-[#ee5f3b] font-semibold mx-4 rounded-lg py-3 pl-14 bg-[#FEEFEE] items-center gap-3">
-                <LogOut size={20}/>
-                <span>Logout</span>
-              </div>:
-              <div onClick={()=>redirect("/login")} className=" mb-4 cursor-pointer hover:scale-105 hover:bg-[] transition-all flex text-green-600 font-semibold mx-4 rounded-lg py-3 pl-14 bg-green-500/20 items-center gap-3">
-                <LogOut size={20}/>
-                <span>Sign in</span>
-              </div> 
+              <button onClick={()=>clearUser()} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-500 hover:bg-red-50 transition-all duration-200 group whitespace-nowrap">
+                <LogOut size={20} className="group-hover:scale-110 transition-transform"/>
+                <span className="font-medium text-base">Logout</span>
+              </button>:
+              <button onClick={()=>router.push("/login")} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-green-600 hover:bg-green-50 transition-all duration-200 group whitespace-nowrap">
+                <LogOut size={20} className="group-hover:scale-110 transition-transform"/>
+                <span className="font-medium text-base">Sign in</span>
+              </button> 
             }
+            </div>
           </motion.div>
       </AnimatePresence>
 
       {/* Toggle button */}
       <button
         onClick={() => setOpen(!open)}
-        className="cursor-pointer fixed top-7 left-4 p-2 rounded-md bg-gray-100 hover:bg-gray-200 z-50"
+        className=" fixed top-6 left-4 p-2.5 rounded-xl bg-white shadow-md text-gray-600 hover:text-orange-600 z-50 transition-colors"
       >
         <Menu size={20} />
       </button>

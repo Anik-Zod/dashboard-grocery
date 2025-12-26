@@ -36,13 +36,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
-        <div className="bg-gray-200/50">
+        <div className="bg-gray-200/50 ">
           <Navbar />
           <div className="flex overflow-x-clip pt-25 pb-3">
             <div className="">
               <Sidebar />
             </div>
-            <div className="overflow-x-clip  w-full mx-3  ">
+            <div className="overflow-x-clip pb lg:h-[577] w-full mx-3 ">
               {children}
             </div>
           </div>

@@ -12,7 +12,7 @@ function UsersComponent({ users }: { users: User[] }) {
     setAllUsers(users);
   }, [users, setAllUsers]);
   return (
-    <div className="px-4 py-6 bg-white rounded-2xl shadow-sm hover:shadow-md h-[568px] overflow-y-auto z-0">
+    <div className="px-4 py-6 bg-white rounded-2xl shadow-sm hover:shadow-md h-full overflow-y-auto z-0">
       <h2 className="text-xl font-semibold text-gray-700  flex items-center justify-around mb-4">
         Online Users
         <span className="bg-[#F97316] text-white p-3 rounded-2xl"><CirclePlus /></span>

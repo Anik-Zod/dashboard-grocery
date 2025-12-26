@@ -47,7 +47,7 @@ export default function Sidebar() {
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: open ? 280 : 0, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
-            className="bg-white   rounded-2xl lg:h-full z-50 lg:z-0 overflow-hidden flex flex-col fixed h-[calc(100vh)] top-0 left-4 bottom-4 lg:top-0 lg:left-0 lg:relative "
+            className="bg-white   rounded-2xl lg:h-full z-50 lg:z-0 overflow-hidden flex flex-col fixed h-[calc(100vh-80px)] top-0  bottom-4 lg:top-0 lg:left-0 lg:relative "
           >
             {/* Header */}
             <div className="p-6 justify-center flex items-center gap-3 border-b border-gray-50">
